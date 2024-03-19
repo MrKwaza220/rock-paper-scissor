@@ -10,7 +10,19 @@ function Home() {
           <p>Let's play</p>
 
           <div className="home_page">
-            
+             <button>
+              <a href="#">
+
+              </a>
+              Single Player
+             </button>
+
+             <button>
+              <a href="#">
+
+              </a>
+              Multiplayer
+             </button>
           </div>
         </div>
       </div>
