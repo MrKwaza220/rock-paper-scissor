@@ -1,4 +1,18 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
 #home{
     width: 100%;
+}
+.home_background{
+   
+    background-image: url('/public/rock.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
 }
 
