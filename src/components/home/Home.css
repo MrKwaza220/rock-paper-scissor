@@ -35,5 +35,18 @@
 
   h1{
     font-size: 50px;
-    color: black;
+  }
+
+  .home_page{
+    display: grid;
+    align-content: center;
+    gap: 10px;
+  }
+
+  button{
+    width: 100px;
+    height: 40px;
+    color: gold;
+    background-color: black;
+    border-radius: 5px;
   }
