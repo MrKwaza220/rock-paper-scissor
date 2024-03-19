@@ -14,7 +14,7 @@ function Home() {
               <a href="#">
 
               </a>
-              Single Player
+              Single player
              </button>
 
              <button>
