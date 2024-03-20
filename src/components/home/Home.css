@@ -43,14 +43,21 @@
     gap: 10px;
     margin: 20% 0 0 45%;
   }
-
-  button{
+.home_page p{
+  font-size: 20px;
+}
+ .single_multi{
     width: 150px;
-    height: 40px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 20px;
     color: gold;
     background-color: black;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
     
+  }
+
+  .single_multi p{
+    margin: 6%;
   }

@@ -11,9 +11,16 @@ function Home() {
           <p>Let's play</p>
 
           <div className="home_page">
-             
-          <Link to="/singleplayer">Singleplayer</Link>
-          <Link to="/multiplayer">Multiplayer</Link>
+          
+          <Link to="/singleplayer" className="single_multi">
+            
+            <p>Singleplayer</p>
+          
+          </Link>
+          <p>Or</p>
+          <Link to="/multiplayer" className="single_multi">
+            <p>Multiplayer</p>
+          </Link>
              
              
              {/* <button>
