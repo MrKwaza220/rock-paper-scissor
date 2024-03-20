@@ -17,7 +17,7 @@ function Home() {
             <p>Singleplayer</p>
           
           </Link>
-          <p>Or</p>
+          <p>OR</p>
           <Link to="/multiplayer" className="single_multi">
             <p>Multiplayer</p>
           </Link>
