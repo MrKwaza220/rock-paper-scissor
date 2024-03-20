@@ -55,9 +55,11 @@
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    
+    transition: 0.5s;
   }
-
+.single_multi:hover{
+  transform: scaleX(1.15);
+}
   .single_multi p{
-    margin: 6%;
+    margin: 6% 0 0 10%;
   }
