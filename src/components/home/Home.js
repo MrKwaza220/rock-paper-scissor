@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -10,10 +11,16 @@ function Home() {
           <p>Let's play</p>
 
           <div className="home_page">
-             <button>
+             
+          <Link to="/singleplayer">Singleplayer</Link>
+          <Link to="/multiplayer">Multiplayer</Link>
+             
+             
+             {/* <button>
               <a href="#single_player">
 
-              </a>
+              </a><Link to="/about">About</Link>
+                    <Link to="/contact">Contact</Link>
               Single player
              </button>
 
@@ -22,7 +29,7 @@ function Home() {
 
               </a>
               Multiplayer
-             </button>
+             </button> */}
           </div>
         </div>
       </div>
