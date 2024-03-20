@@ -11,7 +11,7 @@ function Home() {
 
           <div className="home_page">
              <button>
-              <a href="#">
+              <a href="#single_player">
 
               </a>
               Single player
