@@ -11,7 +11,7 @@ function Home() {
 
           <div className="home_page">
           
-          <Link to="/singleplayer" className="single_multi">
+          <Link to="single_player" className="single_multi">
             
             <p>Singleplayer</p>
           
