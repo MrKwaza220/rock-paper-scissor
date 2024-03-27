@@ -12,6 +12,8 @@ const Singleplayer = () => {
   const [userChoice, setUserChoice] = useState(rockImage);
   const [cpuChoice, setCpuChoice] = useState(rockImage);
   const [result, setResult] = useState("Let's play");
+  const [gameOver, setGameOver] = useState(false);
+  const [winner, setWinner] = useState(null);
 
   const options = [
     { name: 'Rock', image: rockImage },
@@ -19,49 +21,42 @@ const Singleplayer = () => {
     { name: 'Scissors', image: scissorImage }
   ];
 
-  //function to handle game logic when an option is clicked
   const playGame = (index) => {
-    //Get user choice and set user's image accordingly
     const userValue = options[index].name;
     setUserChoice(options[index].image);
     
-    //Generate random CPU choice and set CPU's image accordingly
     const randomNumber = Math.floor(Math.random() * 3);
     const cpuValue = options[randomNumber].name;
     setCpuChoice(options[randomNumber].image);
 
-    //Define outcomes based on user and CPU choices
     const outcomes = {
       Rock: { Rock: "Draw", Paper: "Cpu", Scissors: "User" },
       Paper: { Rock: "User", Paper: "Draw", Scissors: "Cpu" },
       Scissors: { Rock: "Cpu", Paper: "User", Scissors: "Draw" }
     };
 
-    //Determine the result and update the state
     const outcomeValue = outcomes[userValue][cpuValue];
     setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
 
-    //Update scores based on the outcomes
-    if (outcomeValue === "User") {
-     setUserScore(prevScore => prevScore + 1);
+    if (outcomeValue === "User") setUserScore(prevScore => prevScore + 1);
+    else if (outcomeValue === "Cpu") setCpuScore(prevScore => prevScore + 1);
 
-     //check if the user has reached a score of 5
-     if (userScore + 1 === 5){
-       setResult("User Computer");
-       setUserScore(0);
-       setCpuScore(0);
-     }
+    // Check if the game is over
+    if (userScore === 5 || cpuScore === 5) {
+      setGameOver(true);
+      if (userScore === 5) setWinner("User");
+      else setWinner("CPU");
     }
-    else if (outcomeValue === "Cpu"){
-      setCpuScore(prevScore => prevScore + 1);
+  };
 
-      //Check if the CPU has reached a score of 5
-      if(cpuScore +1 === 5){
-        setResult("Computer Won");
-        setUserChoice(0);
-        setCpuScore(0);
-      }
-    }  
+  const restartGame = () => {
+    setUserScore(0);
+    setCpuScore(0);
+    setUserChoice(rockImage);
+    setCpuChoice(rockImage);
+    setResult("Let's play");
+    setGameOver(false);
+    setWinner(null);
   };
 
   return (
@@ -85,6 +80,17 @@ const Singleplayer = () => {
             </span>
           </div>
           <div className="result">{result}</div>
+          {gameOver && (
+            <div className="final_result">
+              {winner === "User" ? (
+                <p>User won!</p>
+              ) : (
+                <p>CPU won!</p>
+              )}
+              <p>Score: {userScore} - {cpuScore}</p>
+              <button onClick={restartGame}>Restart</button>
+            </div>
+          )}
         </div>
         <div className="option_images">
           {options.map((option, index) => (
