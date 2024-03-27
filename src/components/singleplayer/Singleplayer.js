@@ -7,6 +7,7 @@ import scissorImage from "../scissorImage/scissor.png";
 
 //function to handle game logic when an option is clicked
 const Singleplayer = () => {
+   // State variables to manage game state
   const [userScore, setUserScore] = useState(0);
   const [cpuScore, setCpuScore] = useState(0);
   const [userChoice, setUserChoice] = useState(rockImage);
@@ -15,29 +16,36 @@ const Singleplayer = () => {
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
 
+   // Array of options with their names and corresponding images
   const options = [
     { name: 'Rock', image: rockImage },
     { name: 'Paper', image: paperImage },
     { name: 'Scissors', image: scissorImage }
   ];
 
+    // Function to handle game logic when an option is clicked
   const playGame = (index) => {
+    // Get user choice and set user's image accordingly
     const userValue = options[index].name;
     setUserChoice(options[index].image);
-    
+
+    //Generate random CPU choice and set CPU's image accordingly
     const randomNumber = Math.floor(Math.random() * 3);
     const cpuValue = options[randomNumber].name;
     setCpuChoice(options[randomNumber].image);
 
+    // Define outcomes based on user and CPU choices
     const outcomes = {
       Rock: { Rock: "Draw", Paper: "Cpu", Scissors: "User" },
       Paper: { Rock: "User", Paper: "Draw", Scissors: "Cpu" },
       Scissors: { Rock: "Cpu", Paper: "User", Scissors: "Draw" }
     };
 
+    //Determine the result and update the sate
     const outcomeValue = outcomes[userValue][cpuValue];
     setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
 
+    // Update scores based on the outcome
     if (outcomeValue === "User") setUserScore(prevScore => prevScore + 1);
     else if (outcomeValue === "Cpu") setCpuScore(prevScore => prevScore + 1);
 
