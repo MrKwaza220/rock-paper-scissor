@@ -1,95 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Singleplayer.css";
 
+import rockImage from "../rockImage/rock.png";
+import paperImage from "../paperImage/paper.png";
+import scissorImage from "../scissorImage/scissor.png";
+
+//function to handle game logic when an option is clicked
 const Singleplayer = () => {
-  const gameContainer = document.querySelector(".container"),
-  userScore = document.querySelector(".user_score"),
-  cpuScore = document.querySelector(".cpu_score"),
-  userResult = document.querySelector(".user_result img"),
-  cpuResult = document.querySelector(".cpu_result img"),
-  result = document.querySelector(".result"),
-  optionImages = document.querySelectorAll(".option_image");
+  const [userScore, setUserScore] = useState(0);
+  const [cpuScore, setCpuScore] = useState(0);
+  const [userChoice, setUserChoice] = useState(rockImage);
+  const [cpuChoice, setCpuChoice] = useState(rockImage);
+  const [result, setResult] = useState("Let's play");
 
+  const options = [
+    { name: 'Rock', image: rockImage },
+    { name: 'Paper', image: paperImage },
+    { name: 'Scissors', image: scissorImage }
+  ];
 
-
-// Create new Image objects to preload the images
-const rockImage = new Image();
-rockImage.src = "rock.png";
-
-const paperImage = new Image();
-paperImage.src = "paper.png";
-
-const scissorsImage = new Image();
-scissorsImage.src = "scissor.png";
-
-
-
-// A function to handle the game logic
-function playGame(index) {
-  // Add "active" class to the clicked option image
-  optionImages.forEach((image2, index2) => {
-    image2.classList.toggle("active", index === index2);
-  });
-
-  userResult.src = rockImage.src; // Set default image while waiting
-  cpuResult.src = rockImage.src; // Set default image while waiting
-  result.textContent = "Wait...";
-  
-  
-  gameContainer.classList.add("start");
-
-
-
-  // Set a timeout to delay the result calculation
-  setTimeout(() => {
-    gameContainer.classList.remove("start");
-
-    const userImageSrc = optionImages[index].querySelector("img").src;
-    userResult.src = userImageSrc;
+  //function to handle game logic when an option is clicked
+  const playGame = (index) => {
+    //Get user choice and set user's image accordingly
+    const userValue = options[index].name;
+    setUserChoice(options[index].image);
     
-
+    //Generate random CPU choice and set CPU's image accordingly
     const randomNumber = Math.floor(Math.random() * 3);
-    const cpuImages = [rockImage.src, paperImage.src, scissorsImage.src];
-    cpuResult.src = cpuImages[randomNumber];
-  
+    const cpuValue = options[randomNumber].name;
+    setCpuChoice(options[randomNumber].image);
 
-    const cpuValue = ["R", "P", "S"][randomNumber];
-    const userValue = ["R", "P", "S"][index];
-
+    //Define outcomes based on user and CPU choices
     const outcomes = {
-      RR: "Draw",
-      RP: "Cpu",
-      RS: "User",
-      PP: "Draw",
-      PR: "User",
-      PS: "Cpu",
-      SS: "Draw",
-      SR: "Cpu",
-      SP: "User",
+      Rock: { Rock: "Draw", Paper: "Cpu", Scissors: "User" },
+      Paper: { Rock: "User", Paper: "Draw", Scissors: "Cpu" },
+      Scissors: { Rock: "Cpu", Paper: "User", Scissors: "Draw" }
     };
 
-    const outcomeValue = outcomes[userValue + cpuValue];
-    result.textContent = userValue === cpuValue ? "Match Draw" : `${outcomeValue} Won!!`;
- /*   
- if(outcomeValue) increamentScore(userScore)
- if(outcomeValue) increamentScore(cpuScore)
+    //Determine the result and update the state
+    const outcomeValue = outcomes[userValue][cpuValue];
+    setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
 
-    */
- 
-  }, 2500);
-}
-//Increament score
-function increamentScore(scoreResult){
-   scoreResult.innerText = parseInt(scoreResult.innerText) + 1
-}
-// Attach click event listeners to option images
-optionImages.forEach((image, index) => {
-  image.addEventListener("click", () => playGame(index));
-});
+    //Update scores based on the outcomes
+    if (outcomeValue === "User") {
+     setUserScore(prevScore => prevScore + 1);
 
-/* Initialize the game with the default option (rock)
-playGame(0);*/
+     //check if the user has reached a score of 5
+     if (userScore + 1 === 5){
+       setResult("User Computer");
+       setUserScore(0);
+       setCpuScore(0);
+     }
+    }
+    else if (outcomeValue === "Cpu"){
+      setCpuScore(prevScore => prevScore + 1);
 
+      //Check if the CPU has reached a score of 5
+      if(cpuScore +1 === 5){
+        setResult("Computer Won");
+        setUserChoice(0);
+        setCpuScore(0);
+      }
+    }  
+  };
 
   return (
     <section id="single_player">
@@ -97,43 +70,29 @@ playGame(0);*/
         <div className="result_field">
           <div className="score_result">
             <div>
-              User Score: 
-              <span className="user_score"></span>
+              User Score: <span className="user_score">{userScore}</span>
             </div>
-
             <div>
-              <span className="cpu_score"> </span>
-              CPU: 
+              CPU Score: <span className="cpu_score">{cpuScore}</span>
             </div>
           </div>
           <div className="result_images">
             <span className="user_result">
-              <image src="rock.png" alt="Rock" />
+              <img src={userChoice} alt="User choice" />
             </span>
             <span className="cpu_result">
-              <image src="rock.png" alt="Rock" />
+              <img src={cpuChoice} alt="CPU choice" />
             </span>
           </div>
-          <div className="result">Let's play</div>
+          <div className="result">{result}</div>
         </div>
-
-
-        {/*********** * Image********** */}
         <div className="option_images">
-          <span className="option_image">
-            <img src="rock.png" alt="rock" />
-            <p>Rock</p>
-          </span>
-
-          <span className="option_image">
-            <img src="paper.png" alt="Paper" />
-            <p>Paper</p>
-          </span>
-
-          <span className="option_image">
-            <img src="scissor.png" alt="Scissor" />
-            <p>Scissors</p>
-          </span>
+          {options.map((option, index) => (
+            <span className="option_image" key={index} onClick={() => playGame(index)}>
+              <img src={option.image} alt={option.name} />
+              <p>{option.name}</p>
+            </span>
+          ))}
         </div>
       </div>
     </section>
