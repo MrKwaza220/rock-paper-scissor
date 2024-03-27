@@ -25,6 +25,11 @@ const Singleplayer = () => {
 
     // Function to handle game logic when an option is clicked
   const playGame = (index) => {
+    //Prevent playing if the game is over
+    if(gameOver){
+      return;
+    }
+
     // Get user choice and set user's image accordingly
     const userValue = options[index].name;
     setUserChoice(options[index].image);
@@ -45,7 +50,6 @@ const Singleplayer = () => {
     const outcomeValue = outcomes[userValue][cpuValue];
     setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
 
-    // Update scores based on the outcome
     if (outcomeValue === "User") setUserScore(prevScore => prevScore + 1);
     else if (outcomeValue === "Cpu") setCpuScore(prevScore => prevScore + 1);
 
