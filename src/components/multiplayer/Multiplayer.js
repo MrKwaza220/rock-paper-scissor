@@ -1,5 +1,5 @@
 import React from "react";
-import "./Multiplplayer.css";
+import "./Multiplayer.css";
 
 const Multiplplayer =() =>{
     return(
