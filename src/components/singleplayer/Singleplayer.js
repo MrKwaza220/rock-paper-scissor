@@ -48,16 +48,13 @@ const Singleplayer = () => {
 
     //Determine the result and update the sate
     const outcomeValue = outcomes[userValue][cpuValue];
-    setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
-
-    if (outcomeValue === "User") setUserScore(prevScore => prevScore + 1);
-    else if (outcomeValue === "Cpu") setCpuScore(prevScore => prevScore + 1);
-
-    // Check if the game is over
     if (userScore === 5 || cpuScore === 5) {
+      setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
       setGameOver(true);
-      if (userScore === 5) setWinner("User");
-      else setWinner("CPU");
+    } else {
+      if (outcomeValue === "User") setUserScore(prevScore => prevScore + 1);
+      else if (outcomeValue === "Cpu") setCpuScore(prevScore => prevScore + 1);
+      setResult(outcomeValue === "Draw" ? "Match Draw" : `${outcomeValue} Won!!`);
     }
   };
 
