@@ -7,7 +7,7 @@ import scissorImage from "../scissorImage/scissor.png";
 
 //function to handle game logic when an option is clicked
 const Singleplayer = () => {
-   // State variables to manage game state
+  // State variables to manage game state
   const [userScore, setUserScore] = useState(0);
   const [cpuScore, setCpuScore] = useState(0);
   const [userChoice, setUserChoice] = useState(rockImage);
@@ -16,14 +16,14 @@ const Singleplayer = () => {
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
 
-   // Array of options with their names and corresponding images
+  // Array of options with their names and corresponding images
   const options = [
     { name: 'Rock', image: rockImage },
     { name: 'Paper', image: paperImage },
     { name: 'Scissors', image: scissorImage }
   ];
 
-    // Function to handle game logic when an option is clicked
+  // Function to handle game logic when an option is clicked
   const playGame = (index) => {
     //Prevent playing if the game is over
     if(gameOver){
