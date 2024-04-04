@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Singleplayer.css";
-
 import rockImage from "../rockImage/rock.png";
 import paperImage from "../paperImage/paper.png";
 import scissorImage from "../scissorImage/scissor.png";
@@ -71,6 +70,7 @@ const Singleplayer = () => {
   return (
     <section id="single_player">
       <div className="container">
+        <div className="single_container">
         <div className="result_field">
           <div className="score_result">
             <div>
@@ -109,6 +109,8 @@ const Singleplayer = () => {
             </span>
           ))}
         </div>
+        </div>
+        
       </div>
     </section>
   );
