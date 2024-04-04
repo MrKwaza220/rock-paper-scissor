@@ -1,60 +1,59 @@
 import React from "react";
 import "./Multiplayer.css";
+import rockImage from "../rockImage/rock.png";
+import paperImage from "../paperImage/paper.png";
+import scissorImage from "../scissorImage/scissor.png";
 
-const Multiplplayer =() =>{
-
-    return(
-       <section id="multiplayer">
+const Multiplplayer = () => {
+  return (
+    <section id="multiplayer">
+      <div className="container">
         <h1>multiplayer Game</h1>
-        <div className="container">
-            <div className="multi_container">
-            <div class="result_field">
-      <div class="score_result">
+        <div className="multiplayer_home">
+          <div className="multi_container">
+            <div className="result_field">
+              <div className="score_result">
+                <div>
+                  User Score
+                  <span className="user_score"></span>
+                </div>
 
-        <div>
-          User Score 
-          <span class="user_score" ></span>
-        </div>
-
-        <div>
-             <span class="cpu_score" > </span>
-             CPU
-        </div>
-       </div>
-        <div class="result_images">
-            <span class="user_result">
-              <image src="Images/rock.jpg" alt=""/>
-            </span>
-            <span class="cpu_result">
-                <image src="Images/rock.jpg" alt=""/>
-              </span>
-        </div>
-       <div class="result">
-          Let's play
-       </div>
-     </div>
-     <div class="option_images">
-        <span class="option_image">
-            <img src="Images/rock.jpg" alt=""/>
-            <p>Rock</p>
-        </span>
-
-        <span class="option_image">
-            <img src="Images/paper.jpg" alt=""/>
-            <p>Paper</p>
-        </span>
-      
-        <span class="option_image">
-            <img src="Images\scissors.jpg" alt=""/>
-            <p>Scissors</p>
-        </span>
-     </div>
+                <div>
+                  <span className="cpu_score"> </span>
+                  CPU
+                </div>
+              </div>
+              <div className="result_images">
+                <span className="user_result">
+                  <image src={rockImage} alt="" />
+                </span>
+                <span className="cpu_result">
+                  <image src={rockImage} alt="" />
+                </span>
+              </div>
+              <div className="result">Let's play</div>
             </div>
+            <div className="option_images">
+              <span className="option_image">
+                <img src={rockImage} alt="" />
+                <p>Rock</p>
+              </span>
+
+              <span className="option_image">
+                <img src={paperImage} alt="" />
+                <p>Paper</p>
+              </span>
+
+              <span className="option_image">
+                <img src={scissorImage} alt="" />
+                <p>Scissors</p>
+              </span>
+            </div>
+          </div>
         </div>
-
-
-       </section> 
-    )
-}
+      </div>
+    </section>
+  );
+};
 
 export default Multiplplayer;
