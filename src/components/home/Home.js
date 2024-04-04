@@ -21,21 +21,6 @@ function Home() {
             <p>Multiplayer</p>
           </Link>
              
-             
-             {/* <button>
-              <a href="#single_player">
-
-              </a><Link to="/about">About</Link>
-                    <Link to="/contact">Contact</Link>
-              Single player
-             </button>
-
-             <button>
-              <a href="#">
-
-              </a>
-              Multiplayer
-             </button> */}
           </div>
         </div>
       </div>
