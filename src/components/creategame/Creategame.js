@@ -8,23 +8,34 @@ const Creategame = () => {
   return (
     <section id="create_multiplayer">
       <div className="container">
-        <h1 className=" py-4 title">ROCK PAPER & SCISSORS GAME</h1>
-        <div id="initial" className=" col-md-6">
-          <img  src={rockImage} alt="Rock" />
-          <img  src={paperImage} alt="Paper" />
-          <img  src={scissorImage} alt="Scissor" />
-        
-          <button className="form-control btn" onclick="createGame()">
+        <h1 className="create_title">ROCK PAPER & SCISSORS GAME</h1>
+        <div className="create_game">
+
+            {/* Images */}
+          <div className="create_images">
+            <img src={rockImage} alt="Rock" />
+            <img src={paperImage} alt="Paper" />
+            <img src={scissorImage} alt="Scissor" />
+          </div>
+           
+           {/**** create button ****/}
+          <button
+            className="create_button creategame_btn"
+            onclick="createGame()"
+          >
             Create Multiplayer Game
           </button>
+            
+          {/* input field */}
           <input
-            className="form-control my-2"
+            className="enter_code"
             placeholder="Enter Code here"
             type="text"
             name=""
             id="roomUniqueId"
           />
-          <button className="form-control btn" onclick="joinGame()">
+          {/*Joinning button */}
+          <button className="join_button creategame_btn" onclick="joinGame()">
             Join Game
           </button>
         </div>
