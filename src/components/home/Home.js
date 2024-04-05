@@ -3,6 +3,8 @@ import "./Home.css";
 import { Link } from 'react-router-dom';
 
 function Home() {
+
+
   return (
     <section id="home">
       <div className="home_background">
@@ -13,11 +15,11 @@ function Home() {
           
           <Link to="single_player" className="single_multi">
             
-            <p>Singleplayer</p>
+           <p>Singleplayer</p>
           
           </Link>
           <p>OR</p>
-          <Link to="/multiplayer" className="single_multi">
+          <Link to="/create_multiplayer" className="single_multi">
             <p>Multiplayer</p>
           </Link>
              
