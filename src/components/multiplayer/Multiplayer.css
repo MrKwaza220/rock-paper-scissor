@@ -33,9 +33,9 @@
     column-gap: 7rem;
 }
 
-.container.start .playerOne_result{
+.multi_container.start .playerOne_result{
     transform-origin: left;
-    animation: userShake 0.7s ease infinite;
+    animation: playerOneShake 0.7s ease infinite;
 }
 @keyframes userShake {
     50%{
@@ -43,9 +43,9 @@
     }
     
 }
-.container.start .playerTwo_result{
+.multi_container.start .playerTwo_result{
     transform-origin: right;
-    animation: cpuShake 0.7s ease infinite;
+    animation: playerTwoShake 0.7s ease infinite;
 }
 @keyframes cpuShake {
     50%{
