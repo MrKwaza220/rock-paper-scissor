@@ -33,21 +33,21 @@
     column-gap: 7rem;
 }
 
-.multi_container.start .playerOne_result{
-    transform-origin: left;
+.container.start .playerOne_result{
+    /* transform-origin: left; */
     animation: playerOneShake 0.7s ease infinite;
 }
-@keyframes playerTwoShakeShake {
+@keyframes userShake {
     50%{
         transform: rotate(10deg);
     }
     
 }
-.multi_container.start .playerTwo_result{
-    transform-origin: right;
+.container.start .playerTwo_result{
+    /* transform-origin: right; */
     animation: playerTwoShake 0.7s ease infinite;
 }
-@keyframes playerTwoShakeShake {
+@keyframes cpuShake {
     50%{
         transform: rotate(-10deg);
     }
@@ -59,11 +59,13 @@
 }
 .playerOne_result img{
     transform: rotate(90deg);
+    transition: 0.7s;
 }
 .playerTwo_result img{
     transform: rotate(-90deg);
-
+    transition: 0.7s;
 }
+
 .result {
     text-align: center;
     font: 2rem;
