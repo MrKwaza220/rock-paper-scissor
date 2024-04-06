@@ -37,7 +37,7 @@
     transform-origin: left;
     animation: playerOneShake 0.7s ease infinite;
 }
-@keyframes userShake {
+@keyframes playerTwoShakeShake {
     50%{
         transform: rotate(10deg);
     }
@@ -47,7 +47,7 @@
     transform-origin: right;
     animation: playerTwoShake 0.7s ease infinite;
 }
-@keyframes cpuShake {
+@keyframes playerTwoShakeShake {
     50%{
         transform: rotate(-10deg);
     }
