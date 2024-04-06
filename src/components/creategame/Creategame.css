@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 #create_multiplayer{
     height: 50rem;
 }
@@ -37,3 +38,19 @@
 .creategame_btn:hover{
     transform: scale(1.1);
 }
+
+.button_input{
+    display: flex;
+    flex-direction: column;
+}
+.create_button,
+.join_button,
+input {
+  margin-bottom: 10px; 
+}
+
+input{
+    height: 50px;
+    width: 200px;
+}
+
