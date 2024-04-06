@@ -19,6 +19,7 @@
 .create_images img{
     margin-left: 40px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
  img:hover{
@@ -49,6 +50,7 @@
 .join_button,
 input {
   margin-bottom: 10px; 
+  cursor: pointer;
 }
 
 input{
