@@ -33,7 +33,7 @@
     column-gap: 7rem;
 }
 
-.container.start .user_result{
+.container.start .playerOne_result{
     transform-origin: left;
     animation: userShake 0.7s ease infinite;
 }
@@ -43,7 +43,7 @@
     }
     
 }
-.container.start .cpu_result{
+.container.start .playerTwo_result{
     transform-origin: right;
     animation: cpuShake 0.7s ease infinite;
 }
@@ -53,13 +53,14 @@
     }
     
 }
+
 .result_images img{
     width: 100px;
 }
-.user_result img{
+.playerOne_result img{
     transform: rotate(90deg);
 }
-.cpu_result img{
+.playerTwo_result img{
     transform: rotate(-90deg);
 
 }

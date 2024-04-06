@@ -6,15 +6,15 @@ import scissorImage from "../scissorImage/scissor.png";
 
 const Multiplayer = () => {
   // State for scores
-  const [userScore, setUserScore] = useState(0);
-  const [cpuScore, setCpuScore] = useState(0);
+  const [playerOne, setPlayerOne] = useState(0);
+  const [playerTwo, setPlayerTwo] = useState(0);
 
   // State for game result
   const [result, setResult] = useState("Let's play");
 
   // State for user and CPU choices
-  const [userChoice, setUserChoice] = useState(rockImage);
-  const [cpuChoice, setCpuChoice] = useState(rockImage);
+  const [playerOneChoice, setplayerOneChoice] = useState(rockImage);
+  const [playerTwoChoice, setplayerTwoChoice] = useState(rockImage);
 
   // Function to handle the game logic
   const playGame = (index) => {
@@ -23,22 +23,22 @@ const Multiplayer = () => {
 
     // User choice
     const userImageSrc = options[index];
-    setUserChoice(userImageSrc);
+    setplayerOneChoice(userImageSrc);
 
     // CPU choice
     const randomNumber = Math.floor(Math.random() * 3);
     const cpuImageSrc = options[randomNumber];
-    setCpuChoice(cpuImageSrc);
+    setplayerTwoChoice(cpuImageSrc);
 
     // Determine winner
-    const outcomes = ["Draw", "Cpu", "User"];
+    const outcomes = ["Draw", "PlayerTwo", "PlayerOne"];
     const outcomeIndex = (index - randomNumber + 3) % 3;
     const outcome = outcomes[outcomeIndex];
 
     // Update result and scores
     setResult(outcome === "Draw" ? "Match Draw" : `${outcome} Won!!`);
-    if (outcome === "User") setUserScore(userScore + 1);
-    else if (outcome === "Cpu") setCpuScore(cpuScore + 1);
+    if (outcome === "PlayerOne") setPlayerOne(playerOne + 1);
+    else if (outcome === "PlayerTwo") setPlayerTwo(playerTwo + 1);
   };
 
   return (
@@ -50,18 +50,18 @@ const Multiplayer = () => {
             <div className="result_field">
               <div className="score_result">
                 <div>
-                  User Score: <span className="user_score">{userScore}</span>
+                  Player One: <span className="playerOne_score">{playerOne}</span>
                 </div>
                 <div>
-                  CPU Score: <span className="cpu_score">{cpuScore}</span>
+                  Player Two: <span className="playerTwo_score">{playerTwo}</span>
                 </div>
               </div>
               <div className="result_images">
-                <span className="user_result">
-                  <img src={userChoice} alt="User Choice" />
+                <span className="playerOne_result">
+                  <img src={playerOneChoice} alt="PlayerOne Choice" />
                 </span>
-                <span className="cpu_result">
-                  <img src={cpuChoice} alt="CPU Choice" />
+                <span className="playerTwo_result">
+                  <img src={playerTwoChoice} alt="PlayerTwo Choice" />
                 </span>
               </div>
               <div className="result">{result}</div>
