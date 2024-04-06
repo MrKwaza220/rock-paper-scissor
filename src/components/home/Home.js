@@ -20,6 +20,10 @@ function Home() {
           </Link>
           <p>OR</p>
           <Link to="/create_multiplayer" className="single_multi">
+            <p>C.Multiplayer</p>
+          </Link>
+          <p>OR</p>
+          <Link to="/multiplayer" className="single_multi">
             <p>Multiplayer</p>
           </Link>
              
