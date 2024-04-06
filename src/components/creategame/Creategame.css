@@ -3,7 +3,24 @@
     margin: 0;
     box-sizing: border-box;
 }
+#create_multiplayer{
+    background-color: darkkhaki;
+    height: 50rem;
+}
 
 .container{
     padding: 10px 10%;
 }
+
+.create_images{
+    margin: 30px 0px 0px 25rem;
+}
+
+.create_images img{
+    margin-left: 40px;
+    transition: 0.5s;
+}
+
+ img:hover{
+    transform: scale(1.1);
+ }
