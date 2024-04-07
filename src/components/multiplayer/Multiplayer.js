@@ -1,44 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Multiplayer.css";
 import rockImage from "../rockImage/rock.png";
 import paperImage from "../paperImage/paper.png";
 import scissorImage from "../scissorImage/scissor.png";
+import io from "socket.io-client";
+import { useParams } from "react-router-dom";
 
 const Multiplayer = () => {
-  // State for scores
-  const [playerOne, setPlayerOne] = useState(0);
-  const [playerTwo, setPlayerTwo] = useState(0);
-
-  // State for game result
+  const [playerOneScore, setPlayerOneScore] = useState(0);
+  const [playerTwoScore, setPlayerTwoScore] = useState(0);
   const [result, setResult] = useState("Let's play");
+  const [playerOneChoice, setPlayerOneChoice] = useState(rockImage);
+  const [playerTwoChoice, setPlayerTwoChoice] = useState(rockImage);
+  const { roomId } = useParams();
 
-  // State for user and CPU choices
-  const [playerOneChoice, setplayerOneChoice] = useState(rockImage);
-  const [playerTwoChoice, setplayerTwoChoice] = useState(rockImage);
+  const socket = io();
 
-  // Function to handle the game logic
+  useEffect(() => {
+    // Event handler for opponent's choice
+    socket.on("p1Choice", (data) => {
+      setPlayerOneChoice(data.rpsValue);
+    });
+
+    // Event handler for game result
+    socket.on("result", (data) => {
+      setResult(data.winner);
+      if (data.winner === "p1") {
+        setPlayerOneScore((prevScore) => prevScore + 1);
+      } else if (data.winner === "p2") {
+        setPlayerTwoScore((prevScore) => prevScore + 1);
+      }
+    });
+
+    // Clean up event listeners
+    return () => {
+      socket.off("p1Choice");
+      socket.off("result");
+    };
+  }, [socket]);
+
   const playGame = (index) => {
-    // Array of images for options
     const options = [rockImage, paperImage, scissorImage];
+    const userChoice = options[index];
+    setPlayerOneChoice(userChoice);
 
-    // User choice
-    const userImageSrc = options[index];
-    setplayerOneChoice(userImageSrc);
-
-    // CPU choice
     const randomNumber = Math.floor(Math.random() * 3);
-    const cpuImageSrc = options[randomNumber];
-    setplayerTwoChoice(cpuImageSrc);
+    const opponentChoice = options[randomNumber];
+    setPlayerTwoChoice(opponentChoice);
 
-    // Determine winner
-    const outcomes = ["Draw", "PlayerTwo", "PlayerOne"];
-    const outcomeIndex = (index - randomNumber + 3) % 3;
-    const outcome = outcomes[outcomeIndex];
+    const outcome = calculateOutcome(index, randomNumber);
+    setResult(outcome);
+    socket.emit("p1Choice", { roomUniqueId: roomId, rpsValue: userChoice });
+    socket.emit("p2Choice", { roomUniqueId: roomId, rpsValue: opponentChoice });
+  };
 
-    // Update result and scores
-    setResult(outcome === "Draw" ? "Match Draw" : `${outcome} Won!!`);
-    if (outcome === "PlayerOne") setPlayerOne(playerOne + 1);
-    else if (outcome === "PlayerTwo") setPlayerTwo(playerTwo + 1);
+  const calculateOutcome = (playerOneIndex, playerTwoIndex) => {
+    const outcomes = ["Draw", "p2", "p1"];
+    const outcomeIndex = (playerOneIndex - playerTwoIndex + 3) % 3;
+    return outcomes[outcomeIndex];
   };
 
   return (
@@ -50,18 +69,18 @@ const Multiplayer = () => {
             <div className="result_field">
               <div className="score_result">
                 <div>
-                  Player One: <span className="playerOne_score">{playerOne}</span>
+                  Player One: <span className="playerOne_score">{playerOneScore}</span>
                 </div>
                 <div>
-                  Player Two: <span className="playerTwo_score">{playerTwo}</span>
+                  Player Two: <span className="playerTwo_score">{playerTwoScore}</span>
                 </div>
               </div>
               <div className="result_images">
                 <span className="playerOne_result">
-                  <img src={playerOneChoice} alt="PlayerOne Choice" />
+                  <img src={playerOneChoice} alt="Player One Choice" />
                 </span>
                 <span className="playerTwo_result">
-                  <img src={playerTwoChoice} alt="PlayerTwo Choice" />
+                  <img src={playerTwoChoice} alt="Player Two Choice" />
                 </span>
               </div>
               <div className="result">{result}</div>
