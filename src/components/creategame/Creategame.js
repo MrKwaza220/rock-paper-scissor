@@ -4,12 +4,12 @@ import rockImage from "../rockImage/rock.png";
 import paperImage from "../paperImage/paper.png";
 import scissorImage from "../scissorImage/scissor.png";
 import io from "socket.io-client";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Creategame = () => {
   const [roomUniqueId, setRoomUniqueId] = useState(null);
   const [waitingMessage, setWaitingMessage] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // Initialize a socket.io connection
   const socket = io();
@@ -32,14 +32,14 @@ const Creategame = () => {
       setWaitingMessage(
         `Waiting for opponent, please share code ${data.roomUniqueId} to join`
       );
-      history.push(`/multiplayer/${data.roomUniqueId}`);
+      navigate.push(`/multiplayer/${data.roomUniqueId}`);
     });
 
     // Clean up event listeners
     return () => {
       socket.off("newGame");
     };
-  }, [socket, history]);
+  }, [socket, navigate]);
 
   return (
     <section id="create_multiplayer">
