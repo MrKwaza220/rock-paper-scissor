@@ -8,7 +8,7 @@ const io = new Server(server);
 
 const rooms = {}; // Create an object to store room information
 
-app.use(express.static(path.join(__dirname, 'client'))); // Serve static files from the 'client' directory
+app.use(express.static(path.join(__dirname, '../Creategame'))); // Serve static files from the 'Home' directory
  
 // Healthcheck route
 app.get('/healthcheck', (req, res) => {
@@ -17,7 +17,7 @@ app.get('/healthcheck', (req, res) => {
 
 // Serve the main HTML file 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '../client/home.js');
 });
 
 // Socket.io connection handling

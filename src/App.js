@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Home from './components/home/Home';
-import Singleplayer from './components/singleplayer/Singleplayer';
-import Multiplplayer from './components/multiplayer/Multiplayer';
-import Creategame from './components/creategame/Creategame';
+import Home from './client/home/Home';
+import Singleplayer from './client/singleplayer/Singleplayer';
+import Multiplplayer from './client/multiplayer/Multiplayer';
+import Creategame from './client/creategame/Creategame';
 
 function App() {
   return (
